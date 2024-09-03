@@ -1,6 +1,6 @@
 # Setting Up Your Environment
 
-## Experiment Runner
+## [Experiment Runner](https://github.com/S2-group/experiment-runner/tree/master)
 Experiment Runner is a generic framework to automatically execute measurement-based experiments on any platform. The experiments are user-defined, can be completely customized, and expressed in python code!
 
 **Step 1:** Fork [the repo](https://github.com/S2-group/experiment-runner/tree/master) and **clone the fork** to your computer.
