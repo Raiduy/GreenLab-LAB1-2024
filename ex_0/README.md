@@ -7,6 +7,9 @@ Experiment Runner is a generic framework to automatically execute measurement-ba
 
 **Step 2:** Follow the installation instructions [here](https://github.com/S2-group/experiment-runner/tree/master)
 
+**Note**: *It is good practice to use separate virtual envrionments for different (Python) projects. Do this is you find any errors setting up / running **Experiment Runner**. If you have never worked with virtual environments in Python check [venv](https://docs.python.org/3/library/venv.html) or [miniconda](https://docs.anaconda.com/miniconda/).*
+
+
 **Step 3:** Check if the example program ran correctly (i.e., no errors)
 
 ## [EnergiBridge](https://github.com/tdurieux/EnergiBridge)
@@ -20,4 +23,31 @@ Energibridge is a cross-platform energy measurement utility that provides suppor
 ```
 energibridge --summary -o test.csv sleep 5
 ```
+
+## Troubleshooting
+
+- `cargo` error:
+```bash
+$ cargo build -r
+cargo: command not found
+```
+You problably don't have Rust installed, follow the installation instructions [here](https://www.rust-lang.org/tools/install).
+
+- `energibridge` not found:
+```bash
+$ energibridge -h
+energibridge: command not found
+```
+`energibridge` is not in your `$PATH`. Navigate to the `EnergiBridge` installation directory and you will find the binary under `target/release`. Add this directory to your path or, alternatively, copy the binary to a directory that is already in your path. 
+
+- `energibridge` permission error:
+```bash
+$ energibridge sleep 3
+thread 'main' panicked at src/cpu/intel.rs:34:85:
+called `Result::unwrap()` on an `Err` value: Os { code: 13, kind: PermissionDenied, message: "Permission denied" }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+```
+`energibridge` is trying to access protected files for which it doesn't have permission. Even though you followed [the setup](https://github.com/tdurieux/EnergiBridge) step by step this can happen dependig on your distro. Fast fix is running it as `sudo`.
+
+**Note**: *When you run `energibridge` as `sudo` your user `$PATH` is not loaded, so either you specify the whole path (e.g. `/path/to/energibridge/target/release/energibridge`) or you copy the binary to a system-wide available path (e.g. `/usr/bin`).*
 
